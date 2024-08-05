@@ -12,4 +12,4 @@ add_executable(
   include/serializer.h
   src/menu.cc
   src/user.cc
-  src/serializer.cc)
+)
