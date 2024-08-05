@@ -11,7 +11,8 @@ namespace fs = std::filesystem;
 User::User() {
   username = systemusr();
   userfile.path = std::format("/home/{}/.passm/user.bin", username);
-  userfile.file = std::fstream(userfile.path, std::ios::in | std::ios::out | std::ios::app);
+  userfile.file =
+      std::fstream(userfile.path, std::ios::in | std::ios::out | std::ios::app);
 }
 
 User::~User() { userfile.file.close(); }

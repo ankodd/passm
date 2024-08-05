@@ -22,4 +22,4 @@ class User {
   } userfile;
 };
 
-#endif USER_H
+#endif  // USER_H
