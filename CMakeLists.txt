@@ -9,7 +9,7 @@ add_executable(
   include/menu.h
   include/user.h
   include/pass_utils.h
-  include/serializer.h
   src/menu.cc
   src/user.cc
+  include/binary_serialize.h
 )
