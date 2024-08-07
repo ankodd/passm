@@ -1,8 +1,5 @@
-#include <cstdint>
 #include <cstdlib>
-#include <filesystem>
 #include <format>
-#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -11,16 +8,16 @@
 
 namespace fs = std::filesystem;
 
-int main(int argc, char** argv) {
-  std::string password;
-  std::cout << "\t\tEnter the password:" << std::endl;
-  std::cin >> password;
+// TODO: REFACTORING!!
 
-  User usr(password);
+int main(int argc, char** argv) {
+  User usr;
   if (!User::is_registered()) {
     try {
-      fs::path path = std::format("/home/{}/.passm", User::systemusr());
-      fs::create_directory(path);
+      std::string password;
+      std::cout << "\t\tEnter the password:" << std::endl;
+      std::cin >> password;
+      usr.setpass(password);
 
       User::registration(usr);
     } catch (const std::exception& e) {
@@ -29,10 +26,11 @@ int main(int argc, char** argv) {
   }
 
   try {
+    usr.reopen_file(std::ios::in);
     std::cout << "\t\tUser is:" << std::endl;
     const auto data = binary_serialize::deserialize(usr.fs());
     std::cout << std::format("username:{}\npassword:{}\n", data[0], data[1]);
-  } catch(std::exception& e) {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
   }
 

@@ -1,9 +1,6 @@
 #ifndef BINARY_SERIALIZE_H
 #define BINARY_SERIALIZE_H
 
-#ifndef SERIALIZER_H
-#define SERIALIZER_H
-
 #include <cstdint>
 #include <fstream>
 #include <string>
@@ -21,13 +18,13 @@ inline void serialize(std::fstream& fs, const std::vector<std::string>& data) {
   for (const auto& str : data) {
     size_t len = str.size();
     fs.write(reinterpret_cast<const char*>(&len), sizeof(len));
-    fs.write(str.data(), static_cast<int>(len));
+    fs.write(str.data(), static_cast<uint32_t>(len));
   }
 }
 
 inline std::vector<std::string> deserialize(std::fstream& fs) {
   if (!fs.is_open()) {
-    throw std::runtime_error("file for serialize doesn't opened");
+    throw std::runtime_error("file for deserialize doesn't opened");
   }
 
   std::vector<std::string> data;
@@ -48,7 +45,4 @@ inline std::vector<std::string> deserialize(std::fstream& fs) {
 
 };  // namespace binary_serialize
 
-#endif  // SERIALIZER_H
-
-
-#endif // BINARY_SERIALIZE_H
+#endif  // BINARY_SERIALIZE_H

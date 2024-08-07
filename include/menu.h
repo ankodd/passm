@@ -9,7 +9,7 @@
 
 class Menu {
  public:
-  Menu();
+  Menu() = default;
   static void help();
 
  private:

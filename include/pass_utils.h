@@ -9,8 +9,10 @@
 
 namespace pass_utils {
 std::string generate_salt(size_t len);
-std::string hash(const std::string& password, const std::string& key, const std::string& salt);
-}
+std::string hash(const std::string& password, const std::string& key,
+                 const std::string& salt);
+std::string unhash(const std::string& hash, const std::string& key,
+                   const std::string& salt);
+}  // namespace pass_utils
 
-
-#endif //PASS_UTILS_H
+#endif  // PASS_UTILS_H

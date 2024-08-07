@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-Menu::Menu() {}
-
 void Menu::help() {
   std::cout << "passm\tversion 0.1\n";
   std::cout << "All commands executing only with sudo\n";
