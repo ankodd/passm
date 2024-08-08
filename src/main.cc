@@ -8,8 +8,6 @@
 
 namespace fs = std::filesystem;
 
-// TODO: REFACTORING!!
-
 int main(int argc, char** argv) {
   User usr;
   if (!User::is_registered()) {

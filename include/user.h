@@ -7,30 +7,18 @@
 #include <fstream>
 #include <string>
 
-class User {
+#include "entry.h"
+
+class User : public Entry {
  public:
   User();
   explicit User(std::string& password);
   ~User();
   static bool is_registered();
-  void setpass(const std::string&);
+  inline void setpass(const std::string& passwd) { password = passwd; }
   static void registration(User& user);
 
-  static inline std::string systemusr() {
-    std::string name = getenv("USER");
-    if (name.data() == nullptr) {
-      name = getenv("LOGNAME");
-    }
-
-    return name;
-  }
-
   inline std::fstream& fs() { return file; }
-
-  inline void reopen_file(std::ios::openmode opmode) {
-    file.close();
-    file.open(file_path, opmode | std::ios::binary);
-  }
 
  private:
   static auto openmode() {

@@ -23,7 +23,7 @@ User::User(std::string& password)
 }
 
 User::User() : username(systemusr()) {
-  const fs::path path = std::format("/home/{}/.passm", User::systemusr());
+  const fs::path path = std::format("/home/{}/.passm", systemusr());
   if (is_dir()) {
     fs::create_directory(path);
   }
@@ -38,8 +38,6 @@ User::User() : username(systemusr()) {
 }
 
 User::~User() { file.close(); }
-
-void User::setpass(const std::string& passwd) { password = passwd; }
 
 bool User::is_registered() {
   if (fs::exists(file_path)) {
