@@ -7,12 +7,12 @@
 #include <string>
 
 #include "../include/binary_serialize.h"
-#include "../include/file_utils.h"
+#include "../include/sys_utils.h"
 
 namespace fs = std::filesystem;
 
 User::User(std::string& password)
-    : username(systemusr()), password(std::move(password)) {
+    : username(sys_utils::systemusr()), password(std::move(password)) {
   auto open_mode = openmode();
   file.open(file_path, open_mode);
 
@@ -22,14 +22,13 @@ User::User(std::string& password)
   }
 }
 
-User::User() : username(systemusr()) {
-  const fs::path path = std::format("/home/{}/.passm", systemusr());
+User::User() : username(sys_utils::systemusr()) {
   if (is_dir()) {
-    fs::create_directory(path);
+    fs::create_directory(rootpath);
   }
 
   file.open(file_path, openmode() | std::ios::binary);
-  file_utils::ensure_security(file_path);
+  sys_utils::ensure_security(file_path);
 
   if (!file.is_open()) {
     throw std::runtime_error(

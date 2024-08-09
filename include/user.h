@@ -8,6 +8,7 @@
 #include <string>
 
 #include "entry.h"
+#include "sys_utils.h"
 
 class User : public Entry {
  public:
@@ -26,14 +27,15 @@ class User : public Entry {
   }
 
   static inline bool is_dir() {
-    return std::filesystem::exists(std::format("/home/{}/.passm", systemusr()));
+    return std::filesystem::exists(
+        std::format("/home/{}/.passm", sys_utils::systemusr()));
   }
 
   std::string password;
   std::string username;
 
   static inline std::filesystem::path file_path =
-      std::format("/home/{}/.passm/user.bin", systemusr());
+      std::format("/home/{}/.passm/user.bin", sys_utils::systemusr());
 
   std::fstream file;
 };
