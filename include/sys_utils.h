@@ -15,8 +15,8 @@ inline std::string systemusr() {
   return name;
 }
 
-inline void ensure_security(const fs::path& path) {
-  fs::permissions(path, fs::perms::owner_read | fs::perms::owner_write,
+inline void ensure_security(const fs::path& fpath) {
+  permissions(fpath, fs::perms::owner_read | fs::perms::owner_write,
                   fs::perm_options::replace);
 }
 }  // namespace sys_utils

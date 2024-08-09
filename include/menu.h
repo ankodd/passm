@@ -5,7 +5,7 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "user.h"
+#include "user_entry.h"
 
 class Menu {
  public:
@@ -13,7 +13,7 @@ class Menu {
   static void help();
 
  private:
-  User user;
+  UserEntry user;
 };
 
 #endif  // MENU_H
