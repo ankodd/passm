@@ -10,7 +10,7 @@
 class Entry {
  public:
   explicit Entry(const std::filesystem::path& fpath);
-  ~Entry() { file.close(); }
+  virtual ~Entry() noexcept { file.close(); }
 
   void reopen() {
     file.close();
@@ -18,17 +18,22 @@ class Entry {
     file.open(fpath, opmode | std::ios::binary);
   }
 
-  std::fstream& fs() { return file; } // ref to file stream
+  virtual void save() = 0;
+
+  std::fstream& fs() { return file; }
   const std::fstream& fs() const { return file; }
-  std::filesystem::path& path() { return fpath; }
+
+  const std::filesystem::path& path() { return fpath; }
   const std::filesystem::path& path() const { return fpath; }
+
+  void setpass(const std::string& value) { password = value; }
 
  protected:
   std::ios::openmode opmode = std::ios::out;
   std::fstream file;
-  std::filesystem::path fpath;
-  const static inline std::filesystem::path rootpath =
-      std::format("/home/{}/.passm", sys_utils::systemusr());
+  std::string password;
+  const std::filesystem::path fpath;
+  const static inline std::filesystem::path rootpath = sys_utils::rootpath();
 
 private:
   void change_opmode() {

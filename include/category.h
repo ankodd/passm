@@ -3,19 +3,21 @@
 
 #include <string>
 
+namespace category {
 enum class Category { Email, Bank, SocialMedia, Other };
 
-inline std::string category_to_str(Category category) {
+inline std::string to_str(Category category) {
   switch (category) {
     case Category::Email:
-      return "Email";
+      return "email";
     case Category::Bank:
-      return "Bank";
+      return "bank";
     case Category::SocialMedia:
-      return "SocialMedia";
-    case Category::Other:
-      return "Other";
+      return "socialmedia";
+    default:
+      return "other";
   }
+}
 }
 
 #endif  // CATEGORY_H

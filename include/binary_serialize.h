@@ -1,7 +1,6 @@
 #ifndef BINARY_SERIALIZE_H
 #define BINARY_SERIALIZE_H
 
-#include <fstream>
 #include <string>
 #include <vector>
 #include <exception>
@@ -11,7 +10,7 @@ class bad_serialize final : public std::exception {
 public:
   explicit bad_serialize(const std::string& msg) : msg(msg) {}
   const char* what() const noexcept override {
-    return msg.c_str();
+    return (std::string("serialize error:\t") + msg).c_str();
   }
 
 private:

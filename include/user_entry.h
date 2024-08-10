@@ -7,17 +7,24 @@
 
 #include "entry.h"
 #include "sys_utils.h"
+#include "binary_serialize.h"
 
-class UserEntry : public Entry {
+class UserEntry final : public Entry {
  public:
   UserEntry();
   explicit UserEntry(const std::string& password);
   static bool is_registered();
-  void setpass(const std::string& passwd) { password = passwd; }
-  static void registration(UserEntry& user);
+
+  void save() override {
+    if (!file.is_open()) {
+      throw std::runtime_error("User file could not be opened");
+    }
+
+    binary_serialize::serialize(fs(), {username, password});
+    reopen();
+  }
 
  private:
-  std::string password;
   std::string username;
   static inline std::filesystem::path fpath =
       std::format("/home/{}/.passm/user.bin", sys_utils::systemusr());
