@@ -5,7 +5,7 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include "user_entry.h"
+#include "core/user_entry.h"
 
 class Menu {
  public:

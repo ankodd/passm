@@ -1,4 +1,4 @@
-#include "../include/menu.h"
+#include "gui/menu.h"
 
 #include <iostream>
 

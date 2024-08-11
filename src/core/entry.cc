@@ -1,8 +1,8 @@
 #include <format>
 #include <filesystem>
 
-#include "../include/entry.h"
-#include "../include/sys_utils.h"
+#include "core/entry.h"
+#include "utils/sys_utils.h"
 
 Entry::Entry(const std::filesystem::path& fpath)
   : fpath(fpath) {

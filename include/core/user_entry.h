@@ -6,7 +6,7 @@
 #include <string>
 
 #include "entry.h"
-#include "sys_utils.h"
+#include "utils/sys_utils.h"
 #include "binary_serialize.h"
 
 class UserEntry final : public Entry {

@@ -1,7 +1,5 @@
-#include "../include/user_entry.h"
-
-#include <filesystem>
-#include "../include/sys_utils.h"
+#include "core/user_entry.h"
+#include "utils/sys_utils.h"
 
 UserEntry::UserEntry()
 : Entry(fpath), username(sys_utils::systemusr()) {}

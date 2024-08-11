@@ -3,11 +3,11 @@
 #include <string>
 #include <cstdint>
 
-#include "../include/binary_serialize.h"
+#include "core/binary_serialize.h"
 
 void binary_serialize::serialize(std::fstream& fs, const std::vector<std::string>& data) {
   if (data.empty()) {
-    throw bad_serialize("Empty data");
+    throw bad_serialize("empty data");
   }
 
   if (!fs.is_open()) {
@@ -34,7 +34,7 @@ std::vector<std::string> binary_serialize::deserialize(std::fstream& fs) {
   fs.read(reinterpret_cast<char*>(&obj_len), sizeof(obj_len));
 
   if (!obj_len) {
-    throw bad_serialize("Empty data for deserialize");
+    throw bad_serialize("empty file for deserialize");
   }
 
   for (int i = 0; i < obj_len; ++i) {

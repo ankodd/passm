@@ -2,10 +2,10 @@
 #include <iostream>
 #include <string>
 
-#include "../include/binary_serialize.h"
-#include "../include/user_entry.h"
-#include "../include/initialize.h"
-#include "../include/passwd_entry.h"
+#include "core/binary_serialize.h"
+#include "core/user_entry.h"
+#include "utils/initialize.h"
+#include "core/passwd_entry.h"
 
 namespace fs = std::filesystem;
 
