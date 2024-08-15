@@ -1,19 +1,19 @@
 #ifndef BINARY_SERIALIZE_H
 #define BINARY_SERIALIZE_H
 
+#include <exception>
 #include <string>
 #include <vector>
-#include <exception>
 
 namespace binary_serialize {
 class bad_serialize final : public std::exception {
-public:
-  explicit bad_serialize(const std::string& msg) : msg(msg) {}
-  const char* what() const noexcept override {
-    return (std::string("serialize error:\t") + msg).c_str();
+ public:
+  explicit bad_serialize(const char* msg) : msg(msg) {}
+  [[nodiscard]] const char* what() const noexcept override {
+    return msg.c_str();
   }
 
-private:
+ private:
   std::string msg;
 };
 

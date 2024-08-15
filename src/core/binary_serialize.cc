@@ -1,11 +1,12 @@
-#include <fstream>
-#include <vector>
-#include <string>
-#include <cstdint>
-
 #include "core/binary_serialize.h"
 
-void binary_serialize::serialize(std::fstream& fs, const std::vector<std::string>& data) {
+#include <cstdint>
+#include <fstream>
+#include <string>
+#include <vector>
+
+void binary_serialize::serialize(std::fstream& fs,
+                                 const std::vector<std::string>& data) {
   if (data.empty()) {
     throw bad_serialize("empty data");
   }
@@ -37,7 +38,7 @@ std::vector<std::string> binary_serialize::deserialize(std::fstream& fs) {
     throw bad_serialize("empty file for deserialize");
   }
 
-  for (int i = 0; i < obj_len; ++i) {
+  for (size_t i = 0; i < obj_len; ++i) {
     size_t len = 0;
     fs.read(reinterpret_cast<char*>(&len), sizeof(len));
 

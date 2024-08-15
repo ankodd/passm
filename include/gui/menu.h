@@ -1,7 +1,3 @@
-//
-// Created by ruslan on 8/3/24.
-//
-
 #ifndef MENU_H
 #define MENU_H
 
@@ -9,8 +5,9 @@
 
 class Menu {
  public:
-  Menu() = default;
+  explicit Menu();
   static void help();
+  void about_usr();
 
  private:
   UserEntry user;

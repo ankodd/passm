@@ -1,11 +1,13 @@
+#include <filesystem>
 #include <format>
 #include <iostream>
 #include <string>
 
 #include "core/binary_serialize.h"
-#include "core/user_entry.h"
-#include "utils/initialize.h"
 #include "core/passwd_entry.h"
+#include "core/user_entry.h"
+#include "gui/menu.h"
+#include "utils/initialize.h"
 
 namespace fs = std::filesystem;
 
@@ -43,7 +45,8 @@ void second() {
   std::cout << "Enter description: ";
   std::getline(std::cin, desc);
 
-  std::cout << "Choice category:\n1\tSocialMedia\n2\tBank\n2\tEmail\n3\tOther\n";
+  std::cout
+      << "Choice category:\n1\tSocialMedia\n2\tBank\n2\tEmail\n3\tOther\n";
   std::cin >> choice;
 
   switch (choice) {
@@ -77,20 +80,23 @@ void second() {
     std::cout << passwd_entry.desc() << ":\n";
     try {
       std::vector data = binary_serialize::deserialize(passwd_entry.fs());
-      std::cout << std::format("description: {}\npassword: {}", data[0], data[1]);
+      std::cout << std::format("description: {}\npassword: {}", data[0],
+                               data[1]);
     } catch (std::exception& e) {
       std::cerr << e.what() << std::endl;
     }
   }
 }
-}
+}  // namespace test
 
 int main() {
   if (!initialize::is_init()) {
     initialize::init();
   }
 
-  test::second();
+  Menu menu;
+
+  menu.about_usr();
 
   return 0;
 }

@@ -18,6 +18,6 @@ inline std::string to_str(Category category) {
       return "other";
   }
 }
-}
+}  // namespace category
 
 #endif  // CATEGORY_H

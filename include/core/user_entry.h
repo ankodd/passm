@@ -5,9 +5,9 @@
 #include <format>
 #include <string>
 
+#include "binary_serialize.h"
 #include "entry.h"
 #include "utils/sys_utils.h"
-#include "binary_serialize.h"
 
 class UserEntry final : public Entry {
  public:
@@ -23,6 +23,8 @@ class UserEntry final : public Entry {
     binary_serialize::serialize(fs(), {username, password});
     reopen();
   }
+
+  static std::string name() { return sys_utils::systemusr(); }
 
  private:
   std::string username;

@@ -2,7 +2,6 @@
 #define ENTRY_H
 
 #include <filesystem>
-#include <format>
 #include <fstream>
 
 #include "utils/sys_utils.h"
@@ -35,7 +34,7 @@ class Entry {
   const std::filesystem::path fpath;
   const static inline std::filesystem::path rootpath = sys_utils::rootpath();
 
-private:
+ private:
   void change_opmode() {
     opmode = ((opmode == std::ios::out) ? std::ios::in : std::ios::out);
   }

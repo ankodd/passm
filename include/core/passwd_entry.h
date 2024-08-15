@@ -2,11 +2,11 @@
 #define PASSWD_ENTRY_H
 
 #include "binary_serialize.h"
-#include "entry.h"
 #include "category.h"
+#include "entry.h"
 
 class PasswdEntry final : public Entry {
-public:
+ public:
   PasswdEntry(const std::string& desc, const category::Category& category);
   void save() override {
     if (!file.is_open()) {
@@ -19,14 +19,15 @@ public:
 
   const std::string& desc() { return description; }
 
-private:
+ private:
   static std::filesystem::path create_path(const std::string& desc,
                                            const category::Category& category) {
-    return std::format("{}/{}/{}.bin", sys_utils::rootpath(), to_str(category), desc);
+    return std::format("{}/{}/{}.bin", sys_utils::rootpath(), to_str(category),
+                       desc);
   }
 
   std::string description;
   category::Category category;
 };
 
-#endif // PASSWD_ENTRY_H
+#endif  // PASSWD_ENTRY_H

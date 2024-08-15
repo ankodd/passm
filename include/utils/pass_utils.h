@@ -14,7 +14,7 @@ std::string hash(const std::string& password, const std::string& key,
 std::string unhash(const std::string& hash, const std::string& key,
                    const std::string& salt);
 std::string encode(const std::string& password, const std::string& key,
-                 const std::string& salt);
+                   const std::string& salt);
 std::string decode(const std::string& encoded, const std::string& key,
                    const std::string& salt);
 }  // namespace pass_utils
