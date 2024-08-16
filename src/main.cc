@@ -1,3 +1,4 @@
+#include <cctype>
 #include <filesystem>
 #include <format>
 #include <iostream>
@@ -6,7 +7,7 @@
 #include "core/binary_serialize.h"
 #include "core/passwd_entry.h"
 #include "core/user_entry.h"
-#include "gui/menu.h"
+#include "gui/gui.h"
 #include "utils/initialize.h"
 
 namespace fs = std::filesystem;
@@ -94,9 +95,11 @@ int main() {
     initialize::init();
   }
 
-  Menu menu;
-
-  menu.about_usr();
+  if (!UserEntry::is_registered()) {
+    GUI::registration();
+  } else {
+    std::cout << "User is registration\n";
+  }
 
   return 0;
 }

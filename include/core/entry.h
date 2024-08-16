@@ -26,6 +26,15 @@ class Entry {
   const std::filesystem::path& path() const { return fpath; }
 
   void setpass(const std::string& value) { password = value; }
+  const std::string& pass() const { return password; }
+
+  void fopen() {
+    file.open(fpath, opmode | std::ios::binary);
+    if (!file.is_open()) {
+      throw std::runtime_error(
+          std::format("file:{}\t doesn't opened", fpath.string()));
+    }
+  }
 
  protected:
   std::ios::openmode opmode = std::ios::out;
